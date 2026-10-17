@@ -1,6 +1,6 @@
 # Car Rental Portal
 
-University web application by Paulina (@paulina-22), built with PHP 8+, MySQL/MariaDB, HTML, CSS and JavaScript. The interface is in Lithuanian.
+I built this car rental web application as a university project using PHP 8+, MySQL/MariaDB, HTML, CSS and JavaScript. My application has a Lithuanian interface.
 
 ## Features
 - Registration and sign-in with hashed passwords.
@@ -10,7 +10,7 @@ University web application by Paulina (@paulina-22), built with PHP 8+, MySQL/Ma
 - Reviews and ratings.
 
 ## Reconstructed database
-The original database export was unavailable. `database.sql` reconstructs six tables from the PHP queries: users, vehicle_groups, vehicles, vehicle_images, reservations and reviews. This is a compatible reconstruction, not a recovered copy of the original database. Both the legacy `grupe` and `group_id` fields are retained for compatibility with the original pages.
+I no longer have my original database export, so this repository includes a reconstructed schema based on the PHP queries. `database.sql` defines six tables: users, vehicle_groups, vehicles, vehicle_images, reservations and reviews. This is a compatible reconstruction, not a recovered copy of my original database. Both the legacy `grupe` and `group_id` fields are retained for compatibility with my original pages.
 
 `seed-demo.php` adds three fictional accounts, three cars, two reservations and a review. All names, emails and records are demonstration data. `demo-car.svg` is a local illustration; original uploaded photographs are excluded.
 
@@ -70,4 +70,4 @@ Validated with an isolated MariaDB instance and PHP HTTP server:
 - New account registration works, including a missing birth date.
 - Setup refuses an existing populated database and is inaccessible over HTTP.
 
-The source remains an academic prototype. Authorization boundaries, form protection and image-upload validation have not undergone a complete security review; this validation covers local demonstration flows, not public deployment readiness.
+My application remains an academic prototype. Authorization boundaries, form protection and image-upload validation have not undergone a complete security review; this validation covers local demonstration flows, not public deployment readiness.
