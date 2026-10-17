@@ -1,0 +1,9 @@
+config.local.php
+.env
+uploads/*
+*.sql
+*.zip
+*.rar
+*.7z
+.DS_Store
+Thumbs.db
