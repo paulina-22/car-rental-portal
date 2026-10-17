@@ -2,6 +2,7 @@ config.local.php
 .env
 uploads/*
 *.sql
+!database.sql
 *.zip
 *.rar
 *.7z

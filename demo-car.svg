@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" fill="#e6edf7"/>
+  <path d="M100 232v-45q0-20 28-24l65-9 55-64h150l65 70 52 10q25 5 25 30v32Z" fill="#3867b3"/>
+  <path d="m219 151 38-45h128l42 45Z" fill="#c8dff3"/>
+  <circle cx="194" cy="233" r="35" fill="#263447"/><circle cx="452" cy="233" r="35" fill="#263447"/>
+  <circle cx="194" cy="233" r="17" fill="#dbe5f3"/><circle cx="452" cy="233" r="17" fill="#dbe5f3"/>
+  <text x="320" y="316" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#34435a">Demonstracinis automobilis</text>
+</svg>

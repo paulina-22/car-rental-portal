@@ -25,7 +25,7 @@ $stmt = $pdo->prepare("SELECT birth_date FROM users WHERE id = ?");
 $stmt->execute([$user_id]);
 $u = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$user_birth_year = null;
+$user_birth_date = null;
 if (!empty($u['birth_date'])) {
    $user_birth_date = !empty($u['birth_date']) ? $u['birth_date'] : null;
 

@@ -1,25 +1,73 @@
 # Car Rental Portal
 
-University web application by Paulina (@paulina-22), built with PHP, MySQL, HTML, CSS and JavaScript. The interface is in Lithuanian.
+University web application by Paulina (@paulina-22), built with PHP 8+, MySQL/MariaDB, HTML, CSS and JavaScript. The interface is in Lithuanian.
 
-## Features implemented in the source
+## Features
 - Registration and sign-in with hashed passwords.
 - Customer, vehicle owner and controller roles.
 - Vehicle listings, image uploads and vehicle details.
 - Date-based reservations, approval and cancellation.
 - Reviews and ratings.
 
-## Requirements
-PHP with PDO MySQL support and a compatible MySQL/MariaDB database. XAMPP can provide the local Apache, PHP and database services.
+## Reconstructed database
+The original database export was unavailable. `database.sql` reconstructs six tables from the PHP queries: users, vehicle_groups, vehicles, vehicle_images, reservations and reviews. This is a compatible reconstruction, not a recovered copy of the original database. Both the legacy `grupe` and `group_id` fields are retained for compatibility with the original pages.
 
-## Local setup
-1. Copy this repository into your XAMPP `htdocs/car-rental-portal` directory.
-2. Restore the original `nuomosportalas` database separately. No database export was found with this source copy, so this repository is not yet a complete, ready-to-run distribution.
-3. Configure database access using the environment variables `DB_HOST`, `DB_NAME`, `DB_USER` and `DB_PASSWORD`. The defaults target a local XAMPP development setup.
-4. Create a writable `uploads` directory locally for new vehicle images.
-5. Start Apache and MySQL, then open `http://localhost/car-rental-portal/login.php`.
+`seed-demo.php` adds three fictional accounts, three cars, two reservations and a review. All names, emails and records are demonstration data. `demo-car.svg` is a local illustration; original uploaded photographs are excluded.
 
-## Preparation and validation
-A broken, partially commented-out birth-date handler was removed to restore PHP syntax. A misspelled `vehicle_id` column reference was corrected. All included PHP files pass PHP syntax checks. Full application behavior has not been verified against the original database.
+## Run locally on Windows with XAMPP
+1. Start MySQL in the XAMPP Control Panel.
+2. Open Git Bash in this repository (the folder containing `login.php`).
+3. Create the demonstration database:
 
-Original uploaded photos, database records, archives and the diagnostic `phpinfo` page are excluded. This is an academic prototype; authorization, form protection and upload handling need a fuller review before deployment to a public server.
+```bash
+/c/xamppnew/php/php.exe setup-demo.php
+```
+
+If XAMPP is installed in `C:/xampp`, replace `/c/xamppnew` with `/c/xampp` in these commands. Setup defaults to the database `nuomosportalas_demo`, local MySQL port 3306, user `root`, and an empty password. It refuses to modify a database that already contains tables.
+
+4. Start the local PHP server:
+
+```bash
+/c/xamppnew/php/php.exe -S 127.0.0.1:8080
+```
+
+5. Open `http://127.0.0.1:8080/login.php` in your browser. Keep Git Bash open while using the application. Press Ctrl+C to stop the PHP server.
+
+Alternatively, put the project in XAMPP's `htdocs/car-rental-portal`, run setup from that folder, start Apache and open `http://localhost/car-rental-portal/login.php`.
+
+### Demo accounts
+All three accounts use the demonstration password **Demo2026!**.
+
+| Role | Email |
+| --- | --- |
+| Customer | customer@example.test |
+| Vehicle owner | owner@example.test |
+| Controller | admin@example.test |
+
+These are intentionally documented local demo accounts. Use this dataset only in a local demonstration environment.
+
+### Custom database settings
+Set `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER` and `DB_PASSWORD` before running setup and the server. For example, in Git Bash:
+
+```bash
+export DB_HOST=127.0.0.1
+export DB_PORT=3306
+export DB_NAME=nuomosportalas_demo
+export DB_USER=root
+# Set DB_PASSWORD locally if your MySQL account requires one.
+```
+
+For manual phpMyAdmin setup, create an empty database named `nuomosportalas_demo`, import `database.sql`, then run `/c/xamppnew/php/php.exe seed-demo.php` from this repository. The seed refuses to add data to populated tables. Setup and seed scripts reject web requests and can only run from the command line.
+
+## Validation
+Validated with an isolated MariaDB instance and PHP HTTP server:
+- All PHP files pass syntax checks.
+- Database creation, foreign keys and fictional seed records load successfully.
+- All three demo accounts sign in and display their dashboards.
+- Vehicle details, JSON output and search work.
+- A reservation calculates the inclusive price and rejects overlapping bookings.
+- Owners can approve and cancel a reservation; a customer with approval can submit a review.
+- New account registration works, including a missing birth date.
+- Setup refuses an existing populated database and is inaccessible over HTTP.
+
+The source remains an academic prototype. Authorization boundaries, form protection and image-upload validation have not undergone a complete security review; this validation covers local demonstration flows, not public deployment readiness.
